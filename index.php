@@ -1,25 +1,6 @@
- <?php
- $index = TRUE;
- include './inc/control.php'; 
- ?>
-
 <?php
-  $usr = '';
-  $pwd = '';
-          
-  if (isset ($_POST['usr'])){
-    $usr = $_POST['usr'];
-  }
-  if(isset ($_POST['pwd'])){
-    $pwd = $_POST['pwd'];
-  }
-          
-  $acceptedPwd1 = '5f4dcc3b5aa765d61d8327deb882cf99';
-  $acceptedPwd2 = '';
-
-  $date = date_create();
+  include './inc/control.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,8 +15,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="icon" href=".assets/image/Fork.ico">
+    <link rel="icon" href="./assets/image/Fork.ico">
     <title>The Ingredient Shop</title>
+    <link rel="icon" type="image/gif/png" href="./assets/image/Fork.ico">
   </head>
   
 
@@ -45,7 +27,7 @@
   <div class = "container">
     <div class="jumbotron">
         <h1>The Ingredients Shop</h1>
-        <p> We specialize in 3 ingredients</p>
+        <p> We specialize in ingredients</p>
   </div>
     </div>
 
@@ -61,78 +43,162 @@
             <span class="icon-bar"></span>
           </button>
           <!-- need to add link -->
-          <a class="navbar-brand" href="./lib/home.php">Shop Home</a>
+          <a class="navbar-brand" href="./index.php">Shop Home</a>
         </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Ingredients<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <!-- need to add link -->
-              <li><a href="./lib/cardamom.php">Cardamom</a></li>
-              <li><a href="./lib/sorrel.php">Sorrel</a></li>
-              <li><a href="./lib/yams.php">Yam</a></li>
+              <li><a href="./lib/ingredient.php?=Cardamom">Cardamom</a></li>
+              <li><a href="./lib/ingredient.php?=Sorrel">Sorrel</a></li>
+              <li><a href="./lib/ingredient.php?=Yams">Yam</a></li>
             </ul>
-            <!-- need to add link -->
-            <li><a href="./lib/aboutus.php">About Us</a>
+          </li>
+          <!-- need to add link -->
+          <li><a href="./lib/aboutus.php">About Us</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+                        <?php
+                            if(!isset($_SESSION['isLoggedIn'])){
+                            ?>
+                                <li><a href="./lib/login.php" <span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if(isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] == true){
+                            ?>
+                                <li><a href="./lib/logout.php" <span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                            <?php 
+                            }
+                            ?>
+                            <?php
+                            if(isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] == false){
+                            ?>
+                                <li><a href="./lib/login.php" <span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                            <?php 
+                            }
+                            ?>
+                    
+          </ul>
       </div>
       </div>
     </nav>
   </div>
 
 
-<?php if (($usr == "jurentie" && md5($pwd) === $acceptedPwd1) || 
-    ($usr == "findawg" && md5($pwd) === $acceptedPwd1) || 
-    ($usr == "ct310" && md5($pwd) === $acceptedPwd2)) : ?>
+<!-- MAIN BODY -->
+  <div class = "container">
+    <div class = "maincontent">
+      <!--Header-->
+      <!-- 1 Row stretching 12 Grid Block -->
+      <div class="row visible-on" style="text-align:center;">
+        <div class="col-lg-12"><h1>The Ingredients Shop</h1></div>
+      </div>
 
-      <p></p>
-      <p style = "text-align:center;"> Hello, <?php echo $_SESSION["user"]=$usr; //echo $usr ?></p>
-      <p style = "text-align:center;"> Your username and password was A-Okay and you're authenticated</p>
-      <p style = "text-align:center;"> Click <a href="./lib/home.php" style="color:black; text-decoration:underline;">here</a> to continue to website.</p>
+      &nbsp; &nbsp;
 
-<?php elseif (((!empty($usr)) && ($usr != 'jurentie' || $usr != "ct310")) || ((!empty($pwd)) && ($pwd !== $acceptedPwd1 || $pwd !== $acceptedPwd2))) : #|| ($pwd !== $acceptedPwd1 || $pwd !== $acceptedPwd2 ))  : ?>
-
-      <p style="text-align:center;">Sorry, Username and Password do not match. Please try again.</p>
-
-        <div class="row">
-          <div class="col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5
-             col-sm-offset-4 col-xs-offset-3">
-              <div class="login" style="width:200px;">
-                <form action = "#" method = "POST">
-                  <div class="form-group">
-                    <label for="usr">Name:</label>
-                    <input type="text" class="form-control" name="usr">
-                  </div>
-                  <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" name="pwd">
-                  </div>
-                  <input type = "submit" />
-                </form>
-              </div>
-            </div>
-         </div>
-
-<?php else : ?>
-  <p style="text-align:center;">Please Enter Your Username and Password: </p>
-    <div class="row">
-        <div class="col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5
-             col-sm-offset-4 col-xs-offset-3">
-           <div class="login" style="width:200px;">
-             <form action = "#" method = "POST">
-               <div class="form-group">
-                  <label for="usr">Name:</label>
-                  <input type="text" class="form-control" name="usr">
-                </div>
-                <div class="form-group">
-                  <label for="pwd">Password:</label>
-                  <input type="password" class="form-control" name="pwd">
-                </div>
-                <input type = "submit" />
-              </form>
-            </div>
+      <!-- 2nd Row -->
+      <div class="row visible-on">
+        <!-- 1st Column stretching 6 Grid Blocks -->
+        <div class="col-lg-6">
+          <h3 style="text-align:center;">Ingredients</h3>
+          &nbsp; &nbsp;
+          <div class = "message">
+          <p> Welcome to The Ingredients Shop home website.</p>
+          <p> Here at The Ingredients Shop we make it our mission
+            to supply our customers with the BEST ingredients we can find.</p>
+          <p>Especially if you are looking for Cardomom, Sorrel, or Yams...</p>
+          &nbsp; &nbsp;
+          <p>Because that's honestly the only ingredients we supply. But DANG are
+            these some good yams. Our focus is on keeping it simple, but supplying
+            the best product possible in midst of that simplicity.</p>
+          </div>
         </div>
+
+        <!-- 2nd Column, contains carousel -->
+
+        <div class="col-lg-5">
+          <h3></h3>
+
+          <!---Carousel
+          I just copied the w3school demo, feel free to edit -->
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <!-- image on carousel doubles as link to ingredients page-->
+                <a href="./lib/ingredient.php?=Cardamom">
+                  <img src="./assets/image/Cardomom.jpg" alt="Cardomom">
+                </a>
+                <div class="carousel-caption">
+                  <!-- Title's double as links to page of ingredient -->
+                  <h3><a href="./lib/ingredient.php?=Cardamom">Cardamom</a></h3>
+                  <p>Tasty Cardamom</p>
+                  <!-- adding source for image -->
+                  <p>Image Source : <a href="http://www.stylecraze.com/articles/health-benefits-of-cardamom/#gref"
+                    target="_blank">
+                    Stylecraze</a></p>
+                </div>
+              </div>
+
+              <div class="item">
+                <a href="./lib/ingredient.php?=Sorrel">
+                <img src="./assets/image/sorrel.jpg" alt="Sorrel">
+                </a>
+                <div class="carousel-caption">
+                  <h3><a href="./lib/ingredient.php?=Sorrel">Sorrel</a></h3>
+                  <p>Yummy Sorrel</p>
+                  <p>Image Source : <a href="http://www.moderndaygilligan.com/2010/12/sweet_sorrel.html"
+                    target = "_blank">Modern Day Gilligan</a></p>
+                </div>
+              </div>
+
+              <div class="item">
+                <a href="./lib/ingredient.php?=Yams">
+                  <img src="./assets/image/yam.jpg" alt="Flower">
+                </a>
+                <div class="carousel-caption">
+                  <h3><a href="./lib/ingredient.php?=Yams">Yam</a></h3>
+                  <p>Delicious Yams</p>
+                  <p>Image Source : <a href="https://top5ofanything.com/list/7e762cf1/Yam-Producing-Countries"
+                    target="_blank">Top 5 of Anything</a></p>
+                </div>
+              </div>
+
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+
+        </div>
+      </div>
     </div>
 
-<?php endif; ?>
+    <!-- 3rd Row -->
+    <!-- I added this third row because I can't think
+    of a better way to add padding to the bottom of the maincontent
+    instide the sqare white div block -->
 
-<?php include './inc/footer.php'; ?>
+    <div class="row visible-on">
+      <div class="col-lg-6"><p>            </p></div>
+    </div>
+
+  </div>
+
+<?php include "./inc/footer.php"; ?>
