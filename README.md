@@ -8,6 +8,7 @@ Project02 - CT310 | CSU
 - [ ] add Zac's code for sign-up, and upload image
 - [ ] display page for logout (?)
 - [ ] dynamically add links for new pages created to drop-down.
+- [ ] create user database information
 
 # Requirements:
 - [ ] Ingredient pages build on-the-fly from information stored in a site database.
