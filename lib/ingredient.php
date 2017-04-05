@@ -1,11 +1,13 @@
 <?php 
 include '../inc/header.php';
-include '../inc/control.php';
 include '../inc/database.php';
 include './create.php';
 
+$url = $_SERVER['QUERY_STRING'];
+$ingredientName = substr($url, strpos($url, "=") + 1); 
+
 $dbh = new Database();
-$ingredient = $dbh->getIngredient('Yams');
+$ingredient = $dbh->getIngredient($ingredientName);
 $name = $ingredient[0];
 $description = $ingredient[1];
 $image = $ingredient[2];
@@ -17,7 +19,7 @@ $image = $ingredient[2];
 			<!--Header-->
 			<!-- 1 Row stretching 12 Grid Block -->
 			<div class="row visible-on" style="text-align:center;">
-				<div class="col-lg-12"><h1>Yams</h1></div>
+				<div class="col-lg-12"><h1><?php echo $name; ?></h1></div>
 			</div>
 
 			&nbsp; &nbsp;
@@ -31,7 +33,6 @@ $image = $ingredient[2];
 					<div class = "message">
 					<p><blockquote> <?php echo $description?>
 					</blockquote></p>
-					<p><cite><a href="http://blog.dictionary.com/yams-sweet-potatoes/">"Are These Yams or Sweet Potatoes?" by Dictionary.com</a></cite>
 					</div>
 				</div>
 
