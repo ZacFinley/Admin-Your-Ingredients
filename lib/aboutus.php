@@ -1,6 +1,5 @@
 <?php 
 include '../inc/header.php';
-include '../inc/control.php';
 ?>
 
 <!-- MAIN BODY -->
