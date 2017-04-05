@@ -7,6 +7,7 @@ Project02 - CT310 | CSU
 - [ ] store comments in a database and submit them permenantly to ingredient.php
 - [ ] add Zac's code for sign-up, and upload image
 - [ ] display page for logout (?)
+- [ ] dynamically add links for new pages created to drop-down.
 
 # Requirements:
 - [ ] Ingredient pages build on-the-fly from information stored in a site database.
