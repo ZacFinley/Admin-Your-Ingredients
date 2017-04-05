@@ -1,3 +1,7 @@
+<?php
+	include '../inc/control.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -24,7 +28,7 @@
 	<div class = "container">
 		<div class="jumbotron">
 				<h1>The Ingredients Shop</h1>
-				<p> We specialize in 3 ingredients</p>
+				<p> We specialize in ingredients</p>
 	</div>
 		</div>
 
@@ -40,19 +44,46 @@
 						<span class="icon-bar"></span>
 					</button>
 					<!-- need to add link -->
-					<a class="navbar-brand" href="./home.php">Shop Home</a>
+					<a class="navbar-brand" href="../index.php">Shop Home</a>
 				</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Ingredients<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<!-- need to add link -->
-							<li><a href="cardamom.php">Cardamom</a></li>
-							<li><a href="sorrel.php">Sorrel</a></li>
-							<li><a href="yams.php">Yam</a></li>
+							<li><a href="../lib/ingredient.php?=Cardamom">Cardamom</a></li>
+							<li><a href="../lib/ingredient.php?=Sorrel">Sorrel</a></li>
+							<li><a href="../lib/ingredient.php?=Yams">Yam</a></li>
 						</ul>
-						<!-- need to add link -->
-						<li><a href="../lib/aboutus.php">About Us</a>
+					</li>
+					<!-- need to add link -->
+					<li><a href="../lib/aboutus.php">About Us</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+                        <?php
+                            if(!isset($_SESSION['isLoggedIn'])){
+                            ?>
+                                <li><a href="../lib/login.php" <span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if(isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] == true){
+                            ?>
+                                <li><a href="../lib/logout.php" <span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                            <?php 
+                            }
+                            ?>
+                            <?php
+                            if(isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] == false){
+                            ?>
+                                <li><a href="../lib/login.php" <span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                            <?php 
+                            }
+                            ?>
+                    
+					</ul>
 			</div>
 			</div>
 		</nav>
