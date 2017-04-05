@@ -1,7 +1,7 @@
 # Admin-Your-Ingredients
 Project02 - CT310 | CSU
 
-# TODO:
+# TODO: Meeting Requirements
 - [ ] Zac's bio in aboutus.php
 - [ ] fix glitches with comments section on ingredient.php
 - [ ] store comments in a database and submit them permenantly to ingredient.php
