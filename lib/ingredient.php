@@ -1,13 +1,12 @@
 <?php 
 include '../inc/header.php';
-include '../inc/ingredientDB.php';
+include '../inc/Database.php';
 include './create.php';
-include '../inc/commentDB.php';
 
 $url = $_SERVER['QUERY_STRING'];
 $ingredientName = substr($url, strpos($url, "=") + 1); 
 
-$dbh = new IngredientDB();
+$dbh = new Database();
 $ingredient = $dbh->getIngredient($ingredientName);
 $name = $ingredient[0];
 $description = $ingredient[1];
@@ -62,10 +61,6 @@ $image = $ingredient[2];
   					<input type='submit' value='Submit' />
 
   					<input type='hidden' name='articleid' id='articleid' value='<? echo $_GET["id"]; ?>' />
-
-  					<?php
-  						$dbh = new commentDB();
-  					?>
   
   					<h5>Comments</h5>
 					<?php if($_SESSION['user'] != 'Guest'){
