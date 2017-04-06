@@ -1,12 +1,13 @@
 <?php 
 include '../inc/header.php';
-include '../inc/database.php';
+include '../inc/ingredientDB.php';
 include './create.php';
+include '../inc/commentDB.php';
 
 $url = $_SERVER['QUERY_STRING'];
 $ingredientName = substr($url, strpos($url, "=") + 1); 
 
-$dbh = new Database();
+$dbh = new IngredientDB();
 $ingredient = $dbh->getIngredient($ingredientName);
 $name = $ingredient[0];
 $description = $ingredient[1];
@@ -58,7 +59,13 @@ $image = $ingredient[2];
   					Comment:<br />
   					<textarea name='comment' id='comment' rows="4" cols="60">If you are logged in, feel free to leave a comment. Thanks!</textarea><br />
 
+  					<input type='submit' value='Submit' />
+
   					<input type='hidden' name='articleid' id='articleid' value='<? echo $_GET["id"]; ?>' />
+
+  					<?php
+  						$dbh = new commentDB();
+  					?>
   
   					<h5>Comments</h5>
 					<?php if($_SESSION['user'] != 'Guest'){
@@ -68,47 +75,21 @@ $image = $ingredient[2];
 							$time=date("h:i:sa");
 							echo "User: " .$_SESSION['user']. "<br>";
 							echo "Comment: " .$comment."<br>";
-							echo "Date/Time: " .$date. ',' .$time. "<br>";
+							$ip = "19.489.192";
+							$date = "Date/Time: " .$date. ',' .$time. "<br>";
+							$dbh->writeComment($_SESSION['user'], $comment, $ip, $date);
+							$message = new Comment($_SESSION['user'], $comment, $ip, $date);
+							echo $message;
 						}
 						else{
 							echo "User not validated";
 						}
 					?>
 					<br>
-  					<input type='submit' value='Submit' />
 					</form>
 				</p>
 			</div>
 		</div>
 	</div>
-	
-<!--<form class="comments" form method='post'>
-  Username: <input type='text' input name='username' id='name' /><br />
-  Comment:<br />
-  <textarea name='comment' id='comment'></textarea><br />
-
-  <input type='hidden' name='articleid' id='articleid' value='<? echo $_GET["id"]; ?>' />
-  
-  <h5>Comments</h5>
-	<?/*php if(isset($_POST['username'])){
-		$commenter=$_POST['username'];
-		if($commenter == $_SESSION["user"]){
-			$comment=filter_var($_POST['comment']);
-			$date=date("m/d/Y");
-			date_default_timezone_set('America/Denver');
-			$time=date("h:i:sa");
-			echo "User: " .$_SESSION['user']. "<br>";
-			echo "Comment: " .$comment."<br>";
-			echo "Date/Time: " .$date. ',' .$time. "<br>";
-		}
-		else{
-			echo "User not validated";
-		}
-		
-	}*/
-	?>
-	<br>
-  <input type='submit' value='Submit' />
-</form>-->
 
 <?php include '../inc/footer.php'; ?>
