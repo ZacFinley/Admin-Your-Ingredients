@@ -12,7 +12,7 @@ Project02 - CT310 | CSU
 - [ ] create user database information
 
 # Requirements:
-- [ ] Ingredient pages build on-the-fly from information stored in a site database.
+- [x] Ingredient pages build on-the-fly from information stored in a site database.
 - [ ] Support for two classes of site users, customers and administrators.
 - [ ] Administrators can add new ingredients through a custom built browser interface.
 - [ ] Customers have a shopping basket and can submit orders.
