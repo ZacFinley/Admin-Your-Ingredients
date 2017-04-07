@@ -16,5 +16,12 @@
 			return $com;
 		}
 
+		function __toString(){
+			return "User: " . $this->name . "<br>" .
+					"Comment: " . $this->comment . "<br>" .
+					"Date: " . $this->date . "<br>" . 
+					"IP: " . $this->ip . "<br>";
+		}
+
 	}
 ?>

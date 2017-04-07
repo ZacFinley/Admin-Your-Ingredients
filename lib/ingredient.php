@@ -70,18 +70,18 @@ $image = $ingredient[2];
 							date_default_timezone_set('America/Denver');
 							$time=date("h:i:sa");
 							$ip = $_SERVER['REMOTE_ADDR'];
-							$date = "Date/Time: " .$date. ',' .$time. "";
-							$dbh->writeComment($_SESSION['user'], $comment, $ip, $date);
+							$date = $date. ',' .$time. "";
+							$dbh->writeComment($_SESSION['user'], $comment, $ip, $date, $name);
 							}else{
-								echo "User not validated";
+								echo "Please log in to leave a comment.";
 							}
 						}
 					?>
 					</p>
   					<h5>Comments</h5>
-  					<?php $comments = $dbh->getComments(); 
+  					<?php $comments = $dbh->getComments($name); 
   						foreach($comments as $c){
-  							echo $c['name'];
+  							echo $c . "<br>";
   						}?>
 					<br>
 					</form>
