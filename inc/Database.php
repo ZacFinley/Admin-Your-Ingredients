@@ -31,6 +31,19 @@
 
 	}
 
+	function getNames(){
+
+		$sql = "SELECT * FROM ingredients";
+		$result = $this->query($sql);
+		$result = $result->fetchAll();
+		$names = array();
+		foreach($result as $row){
+			array_push($names, $row['name']);
+		}
+		return $names;
+
+	}
+
 	//writes comment to comments
 	function writeComment($name, $comment, $ip, $time, $ingredient){
 
@@ -58,5 +71,6 @@
 		}
 		return $comments;
 	}
+
 }
 ?>
