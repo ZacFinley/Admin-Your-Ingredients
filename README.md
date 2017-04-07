@@ -7,7 +7,7 @@ Project02 - CT310 | CSU
 - [x] store comments in a database 
 - [ ] and submit them permenantly to ingredient.php
 - [ ] add Zac's code for sign-up, and upload image
-- [ ] display page for logout (?)
+- [x] display page for logout (?)
 - [ ] dynamically add links for new pages created to drop-down.
 - [ ] create user database information
 
