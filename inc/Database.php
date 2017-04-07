@@ -32,9 +32,9 @@
 	}
 
 	//writes comment to comments
-	function writeComment($name, $comment, $ip, $time){
+	function writeComment($name, $comment, $ip, $time, $ingredient){
 
-		$sql = "INSERT INTO comments (name, comment, ip, time) VALUES ('" . $name . "', '" . $comment . "', '" . $ip . "', '" . $time . "')";
+		$sql = "INSERT INTO comments (name, comment, ip, time, ingredient) VALUES ('" . $name . "', '" . $comment . "', '" . $ip . "', '" . $time . "', '" . $ingredient . "')";
 
 		$status = $this->exec($sql);
 		if($status === FALSE){
@@ -45,16 +45,16 @@
 
 	}
 
-	function getComments(){
+	function getComments($name){
 
-		$sql = "SELECT * FROM comments";
+		$sql = "SELECT * FROM comments WHERE ingredient LIKE '%$name%'";
 
 		$result = $this->query($sql);
 		$result = $result->fetchAll();
 		$comments = array();
 		$c = new Comment();
 		foreach($result as $row){
-			array_push($comments, $c.newComments($row));
+			array_push($comments, Comment::newComment($row));
 		}
 		return $comments;
 	}
