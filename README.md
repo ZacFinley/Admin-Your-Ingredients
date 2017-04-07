@@ -5,7 +5,7 @@ Project02 - CT310 | CSU
 - [ ] Zac's bio in aboutus.php
 - [x] fix glitches with comments section on ingredient.php
 - [x] store comments in a database 
-- [ ] and submit them permenantly to ingredient.php
+- [x] and submit them permenantly to ingredient.php
 - [ ] add Zac's code for sign-up, and upload image
 - [x] display page for logout (?)
 - [ ] dynamically add links for new pages created to drop-down.
