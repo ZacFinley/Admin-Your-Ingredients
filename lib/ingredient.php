@@ -1,13 +1,10 @@
 <?php 
 include '../inc/header.php';
-include '../inc/Database.php';
-//include '../inc/comment.php';
-include './create.php';
 
 $url = $_SERVER['QUERY_STRING'];
 $ingredientName = substr($url, strpos($url, "=") + 1); 
 
-$dbh = new Database();
+//$dbh = new Database();
 $ingredient = $dbh->getIngredient($ingredientName);
 $name = $ingredient[0];
 $description = $ingredient[1];

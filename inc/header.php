@@ -1,5 +1,8 @@
 <?php
 	include '../inc/control.php';
+	include '../inc/Database.php';
+
+	$dbh = new Database();
 ?>
 
 <!DOCTYPE html>
@@ -51,12 +54,12 @@
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Ingredients<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<!-- need to add link -->
-							<li><a href="../lib/ingredient.php?=Cardamom">Cardamom</a></li>
-							<li><a href="../lib/ingredient.php?=Sorrel">Sorrel</a></li>
-							<li><a href="../lib/ingredient.php?=Yams">Yam</a></li>
-							<li><a href="../lib/ingredient.php?=Napa-Cabbage">Nappa-Cabbage</a></li>
-              				<li><a href="../lib/ingredient.php?=Daikon">Daikon</a></li>
-              				<li><a href="../lib/ingredient.php?=Sage">Sage</a></li>
+							<?php 
+							$names = $dbh->getNames();
+							foreach($names as $name){
+								echo "<li><a href='../lib/ingredient.php?=$name'>$name</a></li>";	
+							}
+							?>
 						</ul>
 					</li>
 					<!-- need to add link -->
