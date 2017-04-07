@@ -1,6 +1,7 @@
 <?php 
 include '../inc/header.php';
 include '../inc/Database.php';
+//include '../inc/comment.php';
 include './create.php';
 
 $url = $_SERVER['QUERY_STRING'];
@@ -61,25 +62,27 @@ $image = $ingredient[2];
   					<input type='submit' value='Submit' />
 
   					<input type='hidden' name='articleid' id='articleid' value='<? echo $_GET["id"]; ?>' />
-  
-  					<h5>Comments</h5>
-					<?php if($_SESSION['user'] != 'Guest'){
+  					<p>
+  					<?php if(isset($_POST['comment'])){
+						if($_SESSION['user'] != "Guest"){
 							$comment=filter_var($_POST['comment']);
 							$date=date("m/d/Y");
 							date_default_timezone_set('America/Denver');
 							$time=date("h:i:sa");
-							echo "User: " .$_SESSION['user']. "<br>";
-							echo "Comment: " .$comment."<br>";
-							$ip = "19.489.192";
-							$date = "Date/Time: " .$date. ',' .$time. "<br>";
+							$ip = $_SERVER['REMOTE_ADDR'];
+							$date = "Date/Time: " .$date. ',' .$time. "";
 							$dbh->writeComment($_SESSION['user'], $comment, $ip, $date);
-							$message = new Comment($_SESSION['user'], $comment, $ip, $date);
-							echo $message;
-						}
-						else{
-							echo "User not validated";
+							}else{
+								echo "User not validated";
+							}
 						}
 					?>
+					</p>
+  					<h5>Comments</h5>
+  					<?php $comments = $dbh->getComments(); 
+  						foreach($comments as $c){
+  							echo $c['name'];
+  						}?>
 					<br>
 					</form>
 				</p>

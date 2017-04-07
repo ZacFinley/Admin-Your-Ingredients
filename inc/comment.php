@@ -7,15 +7,13 @@
 		public $ip;
 		public $date;
 
-		function __construct($n, $c, $i, $d){
-			$this->name = $n;
-			$this->comment = $c;
-			$this->ip = $i;
-			$this->date = $d;
-		}
-
-		function __toString(){
-			return $this->name;
+		public static function newComment($row){
+			$com = new Comment();
+			$com->name = $row['name'];
+			$com->comment = $row['comment'];
+			$com->ip = $row['ip'];
+			$com->date = $row['time'];
+			return $com;
 		}
 
 	}

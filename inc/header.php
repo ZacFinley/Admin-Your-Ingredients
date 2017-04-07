@@ -54,10 +54,19 @@
 							<li><a href="../lib/ingredient.php?=Cardamom">Cardamom</a></li>
 							<li><a href="../lib/ingredient.php?=Sorrel">Sorrel</a></li>
 							<li><a href="../lib/ingredient.php?=Yams">Yam</a></li>
+							<li><a href="../lib/ingredient.php?=Napa-Cabbage">Nappa-Cabbage</a></li>
+              				<li><a href="../lib/ingredient.php?=Daikon">Daikon</a></li>
+              				<li><a href="../lib/ingredient.php?=Sage">Sage</a></li>
 						</ul>
 					</li>
 					<!-- need to add link -->
 					<li><a href="../lib/aboutus.php">About Us</a></li>
+					<li><a href="../lib/passwordreset.php">Password Reset</a></li>
+					<?php if($_SESSION['user'] != "Guest"){?>
+					<li><a href="../lib/addingredient.php">Add</a></li>
+					<?php	
+					}
+					?>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">

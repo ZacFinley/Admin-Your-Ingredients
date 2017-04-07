@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="icon" href="./assets/image/Fork.ico">
-    <title>The Ingredient Shop</title>
+    <title>The Ingredients Shop</title>
     <link rel="icon" type="image/gif/png" href="./assets/image/Fork.ico">
   </head>
   
@@ -53,10 +53,19 @@
               <li><a href="./lib/ingredient.php?=Cardamom">Cardamom</a></li>
               <li><a href="./lib/ingredient.php?=Sorrel">Sorrel</a></li>
               <li><a href="./lib/ingredient.php?=Yams">Yam</a></li>
+              <li><a href="./lib/ingredient.php?=Napa-Cabbage">Nappa-Cabbage</a></li>
+              <li><a href="./lib/ingredient.php?=Daikon">Daikon</a></li>
+              <li><a href="./lib/ingredient.php?=Sage">Sage</a></li>
             </ul>
           </li>
           <!-- need to add link -->
           <li><a href="./lib/aboutus.php">About Us</a></li>
+          <li><a href="./lib/passwordreset.php">Password Reset</a></li>
+          <?php if($_SESSION['user'] != "Guest"){?>
+          <li><a href="./lib/addingredient.php">Add</a></li>
+          <?php 
+          }
+          ?>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">

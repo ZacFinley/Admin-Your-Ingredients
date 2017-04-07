@@ -1,12 +1,14 @@
 <?php
 
+	include '../inc/comment.php';
+
 	class Database extends PDO{
 		public function __construct() {
 			//Directory to music database
 			parent::__construct ( "sqlite:../ingredients.db" );
 		}
 
-		//returns an array of ingredient values
+	//returns an array of ingredient values
 	function getIngredient($name){
 
 		$ingredient = array();
@@ -28,6 +30,8 @@
 		return $ingredient;
 
 	}
+
+	//writes comment to comments
 	function writeComment($name, $comment, $ip, $time){
 
 		$sql = "INSERT INTO comments (name, comment, ip, time) VALUES ('" . $name . "', '" . $comment . "', '" . $ip . "', '" . $time . "')";
@@ -39,6 +43,20 @@
 			echo '</pre>';
 		}
 
+	}
+
+	function getComments(){
+
+		$sql = "SELECT * FROM comments";
+
+		$result = $this->query($sql);
+		$result = $result->fetchAll();
+		$comments = array();
+		$c = new Comment();
+		foreach($result as $row){
+			array_push($comments, $c.newComments($row));
+		}
+		return $comments;
 	}
 }
 ?>
