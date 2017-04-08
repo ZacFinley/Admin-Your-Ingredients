@@ -30,7 +30,8 @@ include '../inc/header.php';
 		<div class="row visible-on">
 				<!-- 1st Column stretching 6 Grid Blocks -->
 				<div class="col-lg-8 col-lg-offset-1"><h3 style="text-align: center;">Zac</h3>
-				<p> Zac's Bio </p></div>
+				<p> Zac Finley who has been attending CSU seeking an Applied Computing Technology Degree.
+					A part of the program consists of completing CT310 which includes making this website.</p></div>
 				<div class ="col-lg-1"><img src="zac.jpg" alt="Zac's Image" width="100"></div>
 		</div>
 
