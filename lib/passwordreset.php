@@ -1,7 +1,5 @@
 <?php 
 include '../inc/header.php';
-include '../inc/Database.php';
-//include '../inc/comment.php';
 include './create.php';
 
 ?>  

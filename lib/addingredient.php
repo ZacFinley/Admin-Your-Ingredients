@@ -1,8 +1,40 @@
 <?php 
 include '../inc/header.php';
-include '../inc/Database.php';
-//include '../inc/comment.php';
 include './create.php';
+
+$max_file_size = 1000000;
+
+$title = "Handling Files";
+$page_name = "home";
+$max_file_size = 1000000; // small
+$db = new Database ();
+
+if ($_FILES && isset ( $_FILES ["image"] )) { 
+    if ($_FILES ["image"] ["error"] == UPLOAD_ERR_OK) {
+        if ($_FILES ["image"] ["size"] > $max_file_size) {
+            $error_msg = "File is too large.";
+        } else {
+            $ext = parseFileSuffix ( $_FILES ['image'] ['type'] );
+            if ($ext == '') {
+                $error_msg = "Unknown file type";
+            } else {
+                    $filename = $_POST['name'];
+                    //Moves image from files -> new Location
+                    move_uploaded_file ( $_FILES ["image"] ["tmp_name"], dirname(__DIR__) . "/assets/image/" . $filename . "." . $ext );
+                    $imagePath = "../assets/image/" . $filename . "." . $ext;
+            }
+        }
+    } else if ($_FILES ["image"] ["error"] == UPLOAD_ERR_INI_SIZE || $_FILES ["image"] ["error"] == UPLOAD_ERR_FORM_SIZE) {
+        $error_msg = "File is too large.";
+    } else {
+        $error_msg = "An error occured. Please try again. <!-- " . $_FILES ["image"] ["error"] . " -->";
+    }
+}
+
+    if(isset($_POST['comment']) && isset($_POST['name']) && $_FILES['image']){
+        $dbh->addIngredient($_POST['name'], $_POST['comment'], $imagePath);
+        echo $_POST['name'];
+    }
 
 ?>	
 
@@ -24,10 +56,9 @@ include './create.php';
 					<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_file_size; ?>" /> 
 					<input type="file" class="form-control" name="image" id="image" />
 				</div>
-				<button type="submit" class="btn btn-default">
+				<!--<button type="submit" class="btn btn-default">
 					<span class="glyphicon glyphicon-upload" aria-label="Upload"></span>
-				</button>
-                </form>
+				</button>-->
                 <br>
           
 			
@@ -42,19 +73,28 @@ include './create.php';
             <p></p>
 
             </form>
-            
-            <?php
-            $stringData = "";
-            if(isset($_POST['name'])){
-                $stringData = $_POST['name'] .','. $_POST['image'] .','. $_POST['comment1'] ."\n";
-                echo $stringData;
-                }
-                
-            
-            
-            ?>
 			</div>
 		</div>
 	</div>
+
+<?php
+/* Support functions for handling image upload above. */
+function parseFileSuffix($iType) {
+    if ($iType == 'image/jpeg') {
+        return 'jpg';
+    }
+    if ($iType == 'image/gif') {
+        return 'gif';
+    }
+    if ($iType == 'image/png') {
+        return 'png';
+    }
+    if ($iType == 'image/tif') {
+        return 'tif';
+    }
+    return '';
+}
+
+?>    
 
 <?php include '../inc/footer.php'; ?>

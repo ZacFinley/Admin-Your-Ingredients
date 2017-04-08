@@ -44,6 +44,17 @@
 
 	}
 
+	function addIngredient($name, $description, $image){
+
+		$sql = "INSERT INTO ingredients (name, description, image) VALUES ('" . $name . "', '" . $description . "', '" . $image . "')";
+		$status = $this->exec($sql);
+		if($status === FALSE){
+			echo '<pre class="bg-danger">';
+			print_r ( $this->errorInfo () );
+			echo '</pre>';
+		}
+	}
+
 	//writes comment to comments
 	function writeComment($name, $comment, $ip, $time, $ingredient){
 
