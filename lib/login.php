@@ -20,10 +20,9 @@ include 'password.php';
 
   $date = date_create();
 ?>
-
-<?php if (($usr == "jurentie" && password_verify([$pwd,$acceptedPwd1) || 
-    ($usr == "findawg" && password_verify([$pwd,$acceptedPwd2) || 
-    ($usr == "ct310" && password_verify([$pwd,$acceptedPwd3)) : ?>
+<?php if (($usr == "jurentie" && password_verify($pwd,$acceptedPwd1)) || 
+    ($usr == "findawg" && password_verify($pwd,$acceptedPwd2)) || 
+    ($usr == "ct310" && password_verify($pwd,$acceptedPwd3))) : ?>
 
 <?php 
   $_SESSION['isLoggedIn'] = true;
