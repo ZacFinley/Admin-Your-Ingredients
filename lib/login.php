@@ -1,5 +1,6 @@
  <?php
  include '../inc/header.php';
+include 'password.php';
  ?>
 
 <?php
@@ -13,15 +14,16 @@
     $pwd = $_POST['pwd'];
   }
           
-  $acceptedPwd1 = '5f4dcc3b5aa765d61d8327deb882cf99';
-  $acceptedPwd2 = '';
+  $acceptedPwd1 = '$2y$10$LeWXPcRKOrfVqBLrhl91A.St.t6GpHOAFPEhhwbpHoBCkue6TltT6';
+  $acceptedPwd2 = '$2y$10$V.xCLLYHUiC82.qD5571PeMI55RSnmibhGTyj6JWAGUlb58LilZLG';
+  $acceptedPwd3 = '$2y$10$CdHe1.9iKVrlwov00TO3cOx39AEWdv5.zJ/md.ATyz2ETho.z0xSq';
 
   $date = date_create();
 ?>
 
-<?php if (($usr == "jurentie" && md5($pwd) === $acceptedPwd1) || 
-    ($usr == "findawg" && md5($pwd) === $acceptedPwd1) || 
-    ($usr == "ct310" && md5($pwd) === $acceptedPwd2)) : ?>
+<?php if (($usr == "jurentie" && password_verify([$pwd,$acceptedPwd1) || 
+    ($usr == "findawg" && password_verify([$pwd,$acceptedPwd2) || 
+    ($usr == "ct310" && password_verify([$pwd,$acceptedPwd3)) : ?>
 
 <?php 
   $_SESSION['isLoggedIn'] = true;
