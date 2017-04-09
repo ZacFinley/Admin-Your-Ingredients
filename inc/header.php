@@ -70,6 +70,7 @@
 					<?php	
 					}
 					?>
+					<li><a href="#"><span class="glyphicon glyphicon-shopping-cart">Cart</span><span class="badge">0</span></a></li>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
